@@ -9,7 +9,7 @@ export default function Home() {
   return (
      <div className="flex">   
        <Sidebar/>         
-       <Feeds/>  
+        <Feeds/>
       <SearchBar/>  
      </div> 
   );
