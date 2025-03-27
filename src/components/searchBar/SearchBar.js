@@ -6,12 +6,16 @@ import { fetchData } from '@/utils/fetchData'
 import { fetefifw } from '@/utils/fetchData'
 import { useState } from 'react'
 import Image from 'next/image'
+import { useContext } from 'react'
+import { SearchContext } from '@/contexts/SearchContext'
 
 
-const SearchBar = ({hr}) => {    
+const SearchBar = () => {      
+  
+const { name, result, setResult } = useContext(SearchContext);       
   
 const [ userKeyword, setUserKeyword ] = useState('')     
-const [result, setResult] = useState([])  
+// const [result, setResult] = useState([])  
 const [ loading, setLoading ] = useState(false)
 
 const handleSearch = async (e) => {
@@ -28,19 +32,17 @@ const handleSearch = async (e) => {
 
 
   return (
-    <div>   
-    <form onSubmit={handleSearch}> 
+    <div>
+      {name}     
+    <form onSubmit={handleSearch}>    
         <input type="text" placeholder='Search post'  
          value={userKeyword}     
             className='bg-transparent'
             onChange={(e) => setUserKeyword(e.target.value)}       
             />
     </form>
-    
-    {hr}   
-
-    
-    {
+     
+    {/* {
       loading ? <p>Loading data</p> : (
         result.map((item, index) => (
           <div key={index}>  
@@ -52,9 +54,9 @@ const handleSearch = async (e) => {
                     {eachItem?.item?.itemContent?.user_results?.result?.legacy?.location || "No Location"}
                     {eachItem?.item?.itemContent?.user_results?.result?.legacy?.followers_count || "No follow"}
                     {eachItem?.item?.itemContent?.user_results?.result?.legacy?.screen_name || "No Name"} 
-                    <img src={eachItem?.item?.itemContent?.user_results?.result?.legacy?.profile_banner_url} alt="Profile Image" /> 
+                    <img src={eachItem?.item?.itemContent?.user_results?.result?.legacy?.profile_banner_url} alt="Profile Image" />  */}
                     {/* <Image src={eachItem?.item?.itemContent?.user_results?.result?.legacy?.profile_banner_url} height={20} width={20} alt='Profile Image'/>   */}
-                  </h1>
+                  {/* </h1>
                  </div>
                 ))}
               </div>
@@ -62,7 +64,7 @@ const handleSearch = async (e) => {
           </div>
         ))
       )
-    }  
+    }   */}
 
     </div>
   )

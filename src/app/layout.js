@@ -28,11 +28,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <SearchProvider>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased`}  
         >
         {children}   
       </body>
-          </SearchProvider> 
+      </SearchProvider>     
     </html>
   );
 }
