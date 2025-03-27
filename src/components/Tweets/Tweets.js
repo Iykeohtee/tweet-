@@ -8,18 +8,37 @@ const Tweets = () => {
     const [loading, setLoading] = useState(false);  
 
  useEffect(() => {
+   const getTweets = async () => {
     setLoading(true)
-    const data = fetchTweets();   
-    setResult(data)
+    const data = await fetchTweets();   
+    setResult(data.result.timeline.instructions)
 
-    setLoading(false)      
- }, [])      
+    setLoading(false) 
+   }     
+   getTweets();
+ }, [])       
 
- console.log(result)
+ console.log(result)    
 
   return (
-    <div className='relative top-16'>
-      Tweets  
+    <div className='relative top-28'>   
+
+    
+    {
+      loading ? <p>Loading data</p> : (
+        result.map((item, index) => (
+          <div key={index}>  
+            {item.entries?.map((entry, entryIndex) => (    
+              <div key={entryIndex}>
+                <h1>{entry.content?.itemContent?.user_results?.result?.legacy?.location || "No Location"}</h1>
+                <h1>{entry.content?.itemContent?.user_results?.result?.legacy?.screen_name || "No Location"}</h1>
+              </div>
+            ))}
+          </div>
+        ))
+      )
+    }  
+
     </div>
   )
 }

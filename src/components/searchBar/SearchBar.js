@@ -8,8 +8,8 @@ import { useState } from 'react'
 import Image from 'next/image'
 
 
-const SearchBar = () => {
-
+const SearchBar = ({hr}) => {    
+  
 const [ userKeyword, setUserKeyword ] = useState('')     
 const [result, setResult] = useState([])  
 const [ loading, setLoading ] = useState(false)
@@ -36,6 +36,8 @@ const handleSearch = async (e) => {
             onChange={(e) => setUserKeyword(e.target.value)}       
             />
     </form>
+    
+    {hr}   
 
     
     {
@@ -45,7 +47,7 @@ const handleSearch = async (e) => {
             {item.entries?.map((entry, entryIndex) => (
               <div key={entryIndex}>
                 {entry.content?.items?.map((eachItem, itemIndex) => (
-                 <div key={itemIndex}>
+                 <div key={itemIndex}>    
                     <h1> 
                     {eachItem?.item?.itemContent?.user_results?.result?.legacy?.location || "No Location"}
                     {eachItem?.item?.itemContent?.user_results?.result?.legacy?.followers_count || "No follow"}
